@@ -21,7 +21,6 @@ pipeline(
     httpStream,
     splitter,
     parser,
-    logger,
     error => {
         console.error("error:", error)
     }

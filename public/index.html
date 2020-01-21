@@ -4,8 +4,22 @@
     <meta charset="utf-8">
 
     <title>The HTML5 Herald</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
+    <meta name="description" content="NodeJS ">
+    <meta name="author" content="Lou">
+
+    <script>
+        const socket = new WebSocket(`ws://${window.location.hostname}:${window.location.port}`);
+
+        socket.addEventListener('open', function (event) {
+            console.log("connected", event);
+        });
+
+        socket.addEventListener('message', function (event) {
+            console.log("new message", event.data);
+
+            socket.send("réponse du client");
+        });
+    </script>
 
 </head>
 

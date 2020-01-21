@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const { pipeline } = require("stream");
+const WebSocket = require("ws");
 
 const server = http.createServer((request, response) => {
     console.log(request.url);
@@ -16,6 +17,18 @@ const server = http.createServer((request, response) => {
             }
         )
     }
+});
+
+const wsServer = new WebSocket.Server({
+    server
+});
+
+wsServer.on("connection", (ws) => {
+    console.log("new connection:", ws);
+    ws.send('du texte');
+    ws.on("message", (message) => {
+        console.log("message du client:", message);
+    })
 });
 
 module.exports = server;
