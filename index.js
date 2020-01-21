@@ -4,6 +4,7 @@ const request = require("request");
 const splitter = require("./splitter");
 const parser = require("./parser");
 const logger = require("./logger");
+const { start } = require("./server");
 
 const httpStream = request.get("https://stream.twitter.com/1.1/statuses/sample.json", {
     oauth: {
@@ -23,4 +24,6 @@ pipeline(
         console.error("error:", error)
     }
 );
+
+start();
 
