@@ -1,30 +1,24 @@
 require("dotenv").config();
 
-const https = require("https");
-const { pipeline } = require("stream");
-const request = require("request");
-const splitter = require("./splitter");
-const parser = require("./parser");
-const logger = require("./logger");
-const server = require("./server");
+const { wsServer, server } = require("./lib/server");
+const twitterStream = require("./lib/twitter");
 
-const httpStream = request.get("https://stream.twitter.com/1.1/statuses/sample.json", {
-    oauth: {
-        consumer_key: process.env.TWITTER_API_CONSUMER_KEY,
-        consumer_secret: process.env.TWITTER_API_CONSUMER_SECRET,
-        token: process.env.TWITTER_API_TOKEN,
-        token_secret: process.env.TWITTER_API_TOKEN_SECRET
-    }
+twitterStream.on("error", error => {
+    console.error(error);
 });
 
-pipeline(
-    httpStream,
-    splitter,
-    parser,
-    error => {
-        console.error("error:", error)
-    }
-);
+wsServer.on("connection", client => {
+    console.log("new client connection");
+
+    client.on("message", message => {
+        console.log("message from client: ", message);
+    });
+
+    client.send("Welcome!");
+
+    twitterStream.on("data", tweet => {
+        client.send(tweet.text);
+    })
+});
 
 server.listen(process.env.PORT);
-
