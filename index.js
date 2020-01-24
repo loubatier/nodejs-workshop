@@ -17,7 +17,7 @@ wsServer.on("connection", client => {
     client.send("Welcome!");
 
     twitterStream.on("data", tweet => {
-        client.send(tweet.text);
+        client.send(JSON.stringify(tweet));
     })
 });
 
