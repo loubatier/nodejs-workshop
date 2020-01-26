@@ -3,26 +3,65 @@
 <head>
     <meta charset="utf-8">
 
-    <title>The HTML5 Herald</title>
-    <meta name="description" content="NodeJS ">
+    <title>Twitter x NodeJS Workshop</title>
+    <meta name="description" content="Twitter x NodeJS Workshop">
     <meta name="author" content="Lou">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/main.css">
 
     <script src="/main.js"></script>
-    <script>
-
-    </script>
 </head>
 
 <body>
-    <h2>Hello World</h2>
-    <button id="start">Start vs</button>
+    <header>
+        <h1>Twitter Versus Mode</h1>
+        <button id="start" disabled>Start vs</button>
+    </header>
 
-    <p id="tweet"></p>
-    <p id="keyword1"></p>
-    <p id="keyword2"></p>
+    <main>
+        <div class="col col-keyword">
+            <div class="selector">
+                <label for="keyword1">First fighter</label>
+                <select name="keyword1" id="keyword1">
+                    <option value="">Clinton</option>
+                    <option value="">Pain au chocolat</option>
+                    <option value="">OL</option>
+                    <option value="">PSG</option>
+                </select>
+            </div>
+            <div class="counter">
+                <div class="bar" id="bar1"></div>
+                <p class="amount" id="amount1">2</p>
+            </div>
+        </div>
 
+        <div class="col">
+            <a class="tweet-container">
+                <div class="tweet-content">
+                    <img id="tweetImage" src="" alt="">
+                    <p id="tweetText"></p>
+                    <div id="tweetColor"></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col col-keyword">
+            <div class="selector">
+                <label for="keyword2">Second fighter</label>
+                <select class="selector" name="keyword2" id="keyword2">
+                    <option value="">Trump</option>
+                    <option value="">Chocolatine</option>
+                    <option value="">PSG</option>
+                    <option value="">PSG</option>
+                </select>
+            </div>
+            <div class="counter">
+                <div class="bar" id="bar2"></div>
+                <p class="amount" id="amount2">1</p>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

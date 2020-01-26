@@ -21,18 +21,24 @@ function init() {
     });
 
     socket.addEventListener('message', event => {
-        //console.log(event.data);
-        const tweet = JSON.parse(event.data);
+        let tweet;
 
         try {
-            tweet;
+            tweet = JSON.parse(event.data);
+            console.log(tweet)
         } catch (error) {
             console.error("error :", error);
-            console.log(event.data);
+            console.log(tweet);
         }
 
-        const container = document.getElementById('tweet');
-        container.innerText = tweet.text;
+        const text = document.getElementById('tweetText');
+        const image = document.getElementById('tweetImage');
+        const color = document.getElementById('tweetColor');
+
+        text.innerText = tweet.text;
+        image.setAttribute("src", tweet.user.profile_image_url);
+        image.style.borderColor = `#${tweet.user.profile_link_color}`;
+        color.style.borderColor = `#${tweet.user.profile_link_color}`;
         socket.send("message received!");
     });
 
@@ -45,6 +51,10 @@ function init() {
 
 function buttonClickedHandler(socket) {
     console.log()
+}
+
+function updateCountBar(bar) {
+
 }
 
 
