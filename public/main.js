@@ -48,6 +48,12 @@ function init() {
         getFilters(socket);
     });
 
+    const stop = document.getElementById('stop');
+
+    stop.addEventListener('click', function () {
+        getFilters(socket);
+    });
+
 }
 
 function getFilters(socket) {
@@ -64,12 +70,12 @@ function getFilters(socket) {
     }
 
     if (track.filters[0] === "" || track.filters[1] === "") {
-        alert("Veuillez sélectionner un deux mots clés");
+        alert("Veuillez sélectionner deux mots clés");
     } else {
         socket.send(JSON.stringify(track));
     }
 }
 
 function updateCountBar(bar) {
-
+    bar.style.height = `${bar.getBoundingClientRect().height + 20}px`
 }
