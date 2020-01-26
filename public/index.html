@@ -17,18 +17,18 @@
 <body>
     <header>
         <h1>Twitter Versus Mode</h1>
-        <button id="start" disabled>Start vs</button>
+        <button id="start">Start vs</button>
     </header>
 
     <main>
         <div class="col col-keyword">
-            <div class="selector">
+            <div class="selector-container">
                 <label for="keyword1">First fighter</label>
-                <select name="keyword1" id="keyword1">
-                    <option value="">Clinton</option>
-                    <option value="">Pain au chocolat</option>
-                    <option value="">OL</option>
-                    <option value="">PSG</option>
+                <select class="selector" name="keyword1" id="keyword1">
+                    <option value=""></option>
+                    <option value="clinton">Clinton</option>
+                    <option value="chocolat">Chocolat</option>
+                    <option value="OL">OL</option>
                 </select>
             </div>
             <div class="counter">
@@ -48,13 +48,13 @@
         </div>
 
         <div class="col col-keyword">
-            <div class="selector">
+            <div class="selector-container">
                 <label for="keyword2">Second fighter</label>
                 <select class="selector" name="keyword2" id="keyword2">
-                    <option value="">Trump</option>
-                    <option value="">Chocolatine</option>
-                    <option value="">PSG</option>
-                    <option value="">PSG</option>
+                    <option value=""></option>
+                    <option value="trump">Trump</option>
+                    <option value="vanille">Vanille</option>
+                    <option value="PSG">PSG</option>
                 </select>
             </div>
             <div class="counter">

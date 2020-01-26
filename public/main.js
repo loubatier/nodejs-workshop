@@ -1,5 +1,7 @@
 function testState() {
-    const isInteractive = document.readyState === "interactive";
+    let isInteractive;
+    isInteractive = document.readyState === "interactive";
+
     return isInteractive;
 }
 
@@ -25,10 +27,8 @@ function init() {
 
         try {
             tweet = JSON.parse(event.data);
-            console.log(tweet)
         } catch (error) {
             console.error("error :", error);
-            console.log(tweet);
         }
 
         const text = document.getElementById('tweetText');
@@ -39,22 +39,37 @@ function init() {
         image.setAttribute("src", tweet.user.profile_image_url);
         image.style.borderColor = `#${tweet.user.profile_link_color}`;
         color.style.borderColor = `#${tweet.user.profile_link_color}`;
-        socket.send("message received!");
     });
+
 
     const start = document.getElementById('start');
 
     start.addEventListener('click', function () {
-        console.log("aloha");
+        getFilters(socket);
     });
+
 }
 
-function buttonClickedHandler(socket) {
-    console.log()
+function getFilters(socket) {
+    const selectors = document.getElementsByClassName('selector');
+    let track     = {
+        "filters" : []
+    };
+
+    for (let i = 0; i < selectors.length; i++) {
+        const el        = selectors[i];
+        const filter    = el.value;
+
+        track.filters.push(filter);
+    }
+
+    if (track.filters[0] === "" || track.filters[1] === "") {
+        alert("Veuillez sélectionner un deux mots clés");
+    } else {
+        socket.send(JSON.stringify(track));
+    }
 }
 
 function updateCountBar(bar) {
 
 }
-
-

@@ -7,11 +7,18 @@ twitterStream.on("error", error => {
     console.error(error);
 });
 
+let filters = null;
+
 wsServer.on("connection", client => {
     console.log("new client connection");
 
     client.on("message", message => {
         console.log("message from client: ", message);
+
+        if(message.includes("filters")) {
+            message = JSON.parse(message);
+            filters = JSON.stringify(message.filters);
+        }
     });
 
     client.send("Welcome!");
@@ -20,5 +27,7 @@ wsServer.on("connection", client => {
         client.send(JSON.stringify(tweet));
     })
 });
+
+module.exports = filters;
 
 server.listen(process.env.PORT);
